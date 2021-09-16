@@ -19,7 +19,7 @@ const login = async(req, res = response) => {
     if (!usuarioDB.estado) {
         return res.status(400).json({
             msg: 'Usuario o contraseña no son correctos - estado'
-        })
+        });
     }
     //verificar contraseña
     const validPassword = bcryptjs.compareSync(password, usuarioDB.password);

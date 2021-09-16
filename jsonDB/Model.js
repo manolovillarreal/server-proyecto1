@@ -1,7 +1,7 @@
 const fs = require("fs")
 const { uid } = require('uid');
 
-
+/** @class Model representing a model. */
 class Model {
 
     constructor(modelName) {
@@ -10,7 +10,7 @@ class Model {
     }
 
     async find(query) {
-        const documents = await loadCollection(this.collection);
+        let documents = await loadCollection(this.collection);
         if (query) {
             documents = documents.filter(u => matchByKeys(u, query));
         }
@@ -27,8 +27,8 @@ class Model {
         return doc;
     }
 
+
     async save(doc) {
-        console.log("Goin to save " + this.name + " in " + this.collection + " collections");
         let obj = await saveCollection(this.collection, doc);
         return obj;
     }
@@ -47,14 +47,23 @@ const loadCollection = async(collectionName) => {
 const saveCollection = (collectionName, doc) => {
     return new Promise(async(resolve, reject) => {
         let collection = await loadCollection(collectionName);
-        doc = { _id: uid(16), ...doc }
-        collection.push(doc);
+
+        if(!doc._id){
+            //Save new document
+            console.log(1);
+            doc = { _id: uid(16), ...doc };
+            collection.push(doc);
+        }
+        else if(collection.find(d=>d._id == doc._id)){
+            //Update existing document...
+
+        }else{
+            reject(`No existe el documento con id ${doc._id} en la coleccion  ${collectionName}.json`);
+        }       
         let data = JSON.stringify(collection);
-        console.log(__dirname);
         fs.writeFile(`./jsonDB/db/${collectionName}.json`, data, (err) => {
             if (err) {
                 console.log(err.message);
-                collection.pop();
                 reject(`Error guardando el archivo ${collectionName}.json`);
             } else {
                 console.log("Save OK");
