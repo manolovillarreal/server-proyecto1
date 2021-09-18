@@ -1,7 +1,21 @@
-1. Broadcast a message to connected users when someone connects or disconnects.
-2. Add support for nicknames. 
-3. Don’t send the same message to the user that sent it. Instead, append the message directly as soon as he/she presses enter.
-4. Add “{user} is typing” functionality.
-5. Show who’s online.
-6. Add private messaging.
-7. Share your improvements!
+
+# Proyecto 1 - Sistemas interactivos distribuidos
+ Servidor Node de Autenticacion y WebSockes
+
+#### Actividades del Backend
+1. Crear la logica necesaria para agregar amigos, tanto de interaccion websockets como de registro en la "base de datos"
+2. Cuando un cliente se conecte debe recibir la lista de amigos y cuales se enceuntran en linea
+3. Crear la logica necesaria para habilitar el chat global y chat privado entre amigos
+4. Crear la logica necesaria para permitir los retos directos entre amigos
+5. Crear la opcion para que un cliente pueda cancelar la busqueda de una partida
+
+
+
+#### Considerar los siguientes escenarios
+* Si un cliente esta buscando partida y se desconecta, el proceso de mathmaking debe ajustarse
+* Si un cliente esta en una partida y se desconecta, deberia poder ingresar nuevamente al mismo room 
+* Si un cliente se desconecta se debe notificar a sus amigos conectados que el usuario se desconecto
+* Un mismo usuario no deberia poder abrir mas de una conexion websocket
+* Cuando una conexion websocket es rechazada por validacion de token, debe emitirse un mensaje al cliente antes de cerrar la conexion
+
+Pueden surgir mas necesidades durante el desarrollo
