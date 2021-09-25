@@ -6,7 +6,8 @@
 2. Cuando un cliente se conecte debe recibir la lista de amigos y cuales se encuentran en línea
 3. Crear la lógica necesaria para habilitar el chat global y chat privado entre amigos
 4. Crear la lógica necesaria para permitir los retos directos entre amigos
-5. Crear la opción para que un cliente pueda cancelar la búsqueda de una partida
+5. Crear la lógica para que un cliente pueda cancelar la búsqueda de una partida
+6. Desplegar servidor a Heroku
 
 
 
